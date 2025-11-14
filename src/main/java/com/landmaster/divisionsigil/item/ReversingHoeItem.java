@@ -8,6 +8,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.level.BlockEvent;
 
+import java.util.Comparator;
+
 @EventBusSubscriber
 public class ReversingHoeItem extends HoeItem {
     public ReversingHoeItem(Tier tier, Properties properties) {
@@ -18,7 +20,8 @@ public class ReversingHoeItem extends HoeItem {
     public static void onToolUse(BlockEvent.BlockToolModificationEvent event) {
         if (event.getLevel() instanceof ServerLevel level && event.getHeldItemStack().getItem() instanceof ReversingHoeItem) {
             level.registryAccess().registry(DivisionSigil.HOE_TRANSMUTATIONS_KEY).ifPresent(registry -> {
-                for (var transmutation: registry) {
+                for (var it = registry.stream().sorted(Comparator.reverseOrder()).iterator(); it.hasNext(); ) {
+                    var transmutation = it.next();
                     var state = transmutation.newBlockState(level, event.getPos());
                     if (state.isPresent()) {
                         if (event.getState() == state.get()) {

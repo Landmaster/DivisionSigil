@@ -1,0 +1,21 @@
+{
+  "type": "divisionsigil:standard",
+  "input": {
+    "blocks": ["minecraft:netherrack"]
+  },
+  "output": [
+    {
+      "data": {
+        "Name": "minecraft:crimson_nylium"
+      },
+      "weight": 1
+    },
+    {
+      "data": {
+        "Name": "minecraft:warped_nylium"
+      },
+      "weight": 1
+    }
+  ],
+  "priority": -100
+}

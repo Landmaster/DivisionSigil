@@ -24,4 +24,9 @@ public class CropRevertTransmutation implements HoeTransmutation {
     public MapCodec<? extends HoeTransmutation> type() {
         return CODEC;
     }
+
+    @Override
+    public int priority() {
+        return 0;
+    }
 }

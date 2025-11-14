@@ -7,13 +7,21 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 
+import javax.annotation.Nonnull;
 import java.util.Optional;
 import java.util.function.Function;
 
-public interface HoeTransmutation {
+public interface HoeTransmutation extends Comparable<HoeTransmutation> {
     Optional<BlockState> newBlockState(ServerLevel level, BlockPos pos);
 
     MapCodec<? extends HoeTransmutation> type();
+
+    int priority();
+
+    @Override
+    default int compareTo(@Nonnull HoeTransmutation o) {
+        return Integer.compare(priority(), o.priority());
+    }
 
     Codec<HoeTransmutation> CODEC = DivisionSigil.HOE_TRANSMUTATIONS_DISPATCH.byNameCodec().dispatch(
             HoeTransmutation::type, Function.identity()

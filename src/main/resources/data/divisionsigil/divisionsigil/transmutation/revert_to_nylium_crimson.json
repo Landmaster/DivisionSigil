@@ -1,0 +1,17 @@
+{
+  "type": "divisionsigil:standard",
+  "input": {
+    "blocks": ["minecraft:netherrack"]
+  },
+  "biomes": [
+    "minecraft:crimson_forest"
+  ],
+  "output": [
+    {
+      "data": {
+        "Name": "minecraft:crimson_nylium"
+      },
+      "weight": 1
+    }
+  ]
+}

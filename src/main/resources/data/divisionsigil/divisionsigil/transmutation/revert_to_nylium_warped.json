@@ -1,0 +1,17 @@
+{
+  "type": "divisionsigil:standard",
+  "input": {
+    "blocks": ["minecraft:netherrack"]
+  },
+  "biomes": [
+    "minecraft:warped_forest"
+  ],
+  "output": [
+    {
+      "data": {
+        "Name": "minecraft:warped_nylium"
+      },
+      "weight": 1
+    }
+  ]
+}

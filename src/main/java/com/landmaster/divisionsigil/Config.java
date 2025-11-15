@@ -37,5 +37,13 @@ public class Config {
             .comment("Number of uses per division sigil activation")
             .defineInRange("divisionSigilDurability", 256, 1, Integer.MAX_VALUE);
 
+    public static final ModConfigSpec.DoubleValue DESTRUCTION_PICKAXE_SPEED_MULTIPLIER = BUILDER
+            .comment("Speed multiplier when mining ordinary stone-like materials with a destruction pickaxe")
+            .defineInRange("destructionPickaxeMultiplier", 5.0, 1.0, 100.0);
+
+    public static final ModConfigSpec.DoubleValue EROSION_SHOVEL_SPEED_MULTIPLIER = BUILDER
+            .comment("Speed multiplier when mining ordinary dirt-like materials with a destruction pickaxe")
+            .defineInRange("erosionShovelMultiplier", 5.0, 1.0, 100.0);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 }

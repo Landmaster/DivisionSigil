@@ -61,21 +61,7 @@ public class DivisionSigil {
             Tiers.DIAMOND.getAttackDamageBonus(),
             Tiers.DIAMOND.getEnchantmentValue(),
             () -> Ingredient.of(UNSTABLE_INGOT_TAG)
-    ) {
-        @Nonnull
-        @Override
-        public Tool createToolProperties(@Nonnull TagKey<Block> block) {
-            if (block == BlockTags.MINEABLE_WITH_PICKAXE) {
-                return new Tool(List.of(
-                        Tool.Rule.deniesDrops(this.getIncorrectBlocksForDrops()),
-                        Tool.Rule.minesAndDrops(BlockTags.BASE_STONE_OVERWORLD, this.getSpeed() * 5),
-                        Tool.Rule.minesAndDrops(BlockTags.BASE_STONE_NETHER, this.getSpeed() * 5),
-                        Tool.Rule.minesAndDrops(block, this.getSpeed())),
-                        1.0F, 1);
-            }
-            return super.createToolProperties(block);
-        }
-    };
+    );
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
@@ -148,5 +134,15 @@ public class DivisionSigil {
     @SubscribeEvent
     private static void modifyComponents(ModifyDefaultComponentsEvent event) {
         event.modify(DIVISION_SIGIL, builder -> builder.set(DataComponents.MAX_DAMAGE, Config.DIVISION_SIGIL_DURABILITY.get()));
+        event.modify(EROSION_SHOVEL, builder -> builder.set(DataComponents.TOOL, new Tool(List.of(
+                Tool.Rule.deniesDrops(UNSTABLE_TIER.getIncorrectBlocksForDrops()),
+                Tool.Rule.minesAndDrops(BlockTags.DIRT, (float) (UNSTABLE_TIER.getSpeed() * Config.EROSION_SHOVEL_SPEED_MULTIPLIER.getAsDouble())),
+                Tool.Rule.minesAndDrops(BlockTags.MINEABLE_WITH_SHOVEL, UNSTABLE_TIER.getSpeed())),
+                1.0F, 1)));
+        event.modify(DESTRUCTION_PICKAXE, builder -> builder.set(DataComponents.TOOL, new Tool(List.of(
+                Tool.Rule.deniesDrops(UNSTABLE_TIER.getIncorrectBlocksForDrops()),
+                Tool.Rule.minesAndDrops(BlockTags.BASE_STONE_OVERWORLD, (float) (UNSTABLE_TIER.getSpeed() * Config.DESTRUCTION_PICKAXE_SPEED_MULTIPLIER.getAsDouble())),
+                Tool.Rule.minesAndDrops(BlockTags.MINEABLE_WITH_PICKAXE, UNSTABLE_TIER.getSpeed())),
+                1.0F, 1)));
     }
 }

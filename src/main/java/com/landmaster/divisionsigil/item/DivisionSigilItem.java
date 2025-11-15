@@ -4,12 +4,10 @@ import com.landmaster.divisionsigil.DivisionSigil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
@@ -64,7 +62,9 @@ public class DivisionSigilItem extends Item {
             if (!level.isClientSide()
                     && level.dimension() == Level.OVERWORLD
                     && checkTimeCondition(level)) {
-                BlockPos.betweenClosedStream(AABB.ofSize(mob.position(), 5, 5, 5)).forEach(pos -> {
+                var it = BlockPos.betweenClosedStream(AABB.ofSize(mob.position(), 5, 5, 5)).iterator();
+                while (it.hasNext()) {
+                    var pos = it.next();
                     if (level.getBlockState(pos).is(Blocks.ENCHANTING_TABLE)
                         && level.canSeeSky(pos)) {
                         if (checkRedstoneCondition(level, pos) && checkDirtCondition(level, pos)) {
@@ -88,7 +88,7 @@ public class DivisionSigilItem extends Item {
                             }
                         }
                     }
-                });
+                }
             }
         }
     }

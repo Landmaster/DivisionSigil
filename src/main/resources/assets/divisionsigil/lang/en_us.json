@@ -23,6 +23,8 @@
   "divisionsigil.configuration.axeLifeCost": "Health cost to use Healing Axe",
   "divisionsigil.configuration.axeUndeadDamageMultiplier": "Healing Axe undead damage multiplier",
   "divisionsigil.configuration.divisionSigilDurability": "Division Sigil # of uses on activation",
+  "divisionsigil.configuration.destructionPickaxeMultiplier": "Destruction Pickaxe speed multiplier",
+  "divisionsigil.configuration.erosionShovelMultiplier": "Erosion Shovel speed multiplier",
 
   "message.divisionsigil.sigils_activated": "%d division sigil(s) activated",
   "message.divisionsigil.midnight_condition": "The Division Sigil ritual must be performed at midnight.",

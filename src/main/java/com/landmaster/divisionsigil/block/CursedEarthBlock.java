@@ -4,10 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.NaturalSpawner;
 import net.minecraft.world.level.block.BaseFireBlock;
@@ -53,7 +50,10 @@ public class CursedEarthBlock extends Block {
                     && SpawnPlacements.isSpawnPositionOk(spawnerData.type, level, posAbove)
                     && SpawnPlacements.checkSpawnRules(spawnerData.type, level, MobSpawnType.NATURAL, posAbove, level.random)
                     && level.noCollision(spawnerData.type.getSpawnAABB(posAbove.getX() + 0.5, posAbove.getY(), posAbove.getZ() + 0.5))) {
-                        spawnerData.type.spawn(level, posAbove, MobSpawnType.NATURAL);
+                        var monster = spawnerData.type.spawn(level, posAbove, MobSpawnType.NATURAL);
+                        if (monster instanceof Mob mob) {
+                            mob.setPersistenceRequired();
+                        }
                     }
                 });
             }

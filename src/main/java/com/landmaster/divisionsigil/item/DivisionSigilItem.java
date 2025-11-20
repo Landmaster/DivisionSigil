@@ -1,5 +1,6 @@
 package com.landmaster.divisionsigil.item;
 
+import com.landmaster.divisionsigil.Config;
 import com.landmaster.divisionsigil.DivisionSigil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -21,6 +22,11 @@ import javax.annotation.Nonnull;
 public class DivisionSigilItem extends Item {
     public DivisionSigilItem(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public boolean isEnchantable(@Nonnull ItemStack stack) {
+        return false;
     }
 
     @Override
@@ -56,7 +62,7 @@ public class DivisionSigilItem extends Item {
 
     @SubscribeEvent
     public static void onDeath(LivingDeathEvent event) {
-        if (event.getSource().getEntity() instanceof Player player && event.getEntity() instanceof Mob mob) {
+        if (Config.ENABLE_DIVISION_SIGIL_RITUAL.getAsBoolean() && event.getSource().getEntity() instanceof Player player && event.getEntity() instanceof Mob mob) {
             var inventory = player.getInventory();
             var level = event.getEntity().level();
             if (!level.isClientSide()

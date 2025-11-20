@@ -45,5 +45,13 @@ public class Config {
             .comment("Speed multiplier when mining ordinary dirt-like materials with a destruction pickaxe")
             .defineInRange("erosionShovelMultiplier", 5.0, 1.0, 100.0);
 
+    public static final ModConfigSpec.IntValue BUILDERS_WAND_MAX_BLOCKS = BUILDER
+            .comment("Maximum blocks that the Builder's Wand can place")
+            .defineInRange("wandMaxBlocks", 64, 1, Integer.MAX_VALUE);
+
+    public static final ModConfigSpec.BooleanValue ENABLE_DIVISION_SIGIL_RITUAL = BUILDER
+            .comment("Whether the normal division sigil ritual should be enabled (disable if modpack author wants division sigils activated by some other means)")
+            .define("enableRitual", true);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 }

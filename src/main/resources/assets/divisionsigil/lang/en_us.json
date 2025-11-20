@@ -10,6 +10,7 @@
   "item.divisionsigil.destruction_pickaxe": "Destruction Pickaxe",
   "item.divisionsigil.healing_axe": "Healing Axe",
   "item.divisionsigil.erosion_shovel": "Erosion Shovel",
+  "item.divisionsigil.builders_wand": "Builder's Wand",
   "block.divisionsigil.cursed_earth": "Cursed Earth",
 
   "divisionsigil.configuration.title": "Division Sigil Configs",
@@ -25,6 +26,8 @@
   "divisionsigil.configuration.divisionSigilDurability": "Division Sigil # of uses on activation",
   "divisionsigil.configuration.destructionPickaxeMultiplier": "Destruction Pickaxe speed multiplier",
   "divisionsigil.configuration.erosionShovelMultiplier": "Erosion Shovel speed multiplier",
+  "divisionsigil.configuration.wandMaxBlocks": "Builder's Wand maximum blocks",
+  "divisionsigil.configuration.enableRitual": "Enable Division Sigil ritual",
 
   "message.divisionsigil.sigils_activated": "%d division sigil(s) activated",
   "message.divisionsigil.midnight_condition": "The Division Sigil ritual must be performed at midnight.",
@@ -33,6 +36,7 @@
   "message.divisionsigil.dirt_condition": "The enchantment table must be on a 5 by 5 surface of dirt or equivalent blocks.",
   "message.divisionsigil.kill_condition": "The sacrifice conditions are right. Kill any mob near the table to activate the division sigil(s).",
 
+  "tooltip.divisionsigil.instability_warning": "ERROR: Divide by diamond (explodes in %s seconds when crafted)",
   "tooltip.divisionsigil.instability_counter": "Explodes in %s seconds",
 
   "gui.divisionsigil.biome_allowlist": "(certain biomes only)",

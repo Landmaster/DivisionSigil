@@ -18,7 +18,6 @@ import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.SimpleTier;
@@ -37,7 +36,6 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -93,6 +91,8 @@ public class DivisionSigil {
             properties -> new HealingAxeItem(UNSTABLE_TIER, properties));
     public static final DeferredItem<ShovelItem> EROSION_SHOVEL = ITEMS.registerItem("erosion_shovel",
             properties -> new ErosionShovelItem(UNSTABLE_TIER, properties));
+    public static final DeferredItem<BuildersWandItem> BUILDERS_WAND = ITEMS.registerItem("builders_wand", BuildersWandItem::new,
+            new Item.Properties().stacksTo(1));
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> SIGIL_TAB = CREATIVE_MODE_TABS.register("division_sigil", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.divisionsigil")) //The language key for the title of your CreativeModeTab
@@ -110,6 +110,7 @@ public class DivisionSigil {
                 output.accept(DESTRUCTION_PICKAXE);
                 output.accept(HEALING_AXE);
                 output.accept(EROSION_SHOVEL);
+                output.accept(BUILDERS_WAND);
             }).build());
 
     public static final Supplier<RecipeType<HoeTransmutation>> HOE_TRANSMUTATION_TYPE = RECIPE_TYPES.register("hoe_transmutation", RecipeType::simple);

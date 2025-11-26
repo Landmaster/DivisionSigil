@@ -28,7 +28,16 @@ import java.util.*;
 
 @EventBusSubscriber
 public class UnstableRecipe extends ShapedRecipe {
-    public UnstableRecipe() {
+    private static UnstableRecipe instance = null;
+
+    public static UnstableRecipe getInstance() {
+        if (instance == null) {
+            instance = new UnstableRecipe();
+        }
+        return instance;
+    }
+
+    private UnstableRecipe() {
         super("", CraftingBookCategory.MISC,
                 ShapedRecipePattern.of(ImmutableMap.of(
                         'i', Ingredient.of(Items.IRON_INGOT),
@@ -167,23 +176,13 @@ public class UnstableRecipe extends ShapedRecipe {
         @Nonnull
         @Override
         public MapCodec<UnstableRecipe> codec() {
-            return MapCodec.unit(new UnstableRecipe());
+            return MapCodec.unit(getInstance());
         }
 
         @Nonnull
         @Override
         public StreamCodec<RegistryFriendlyByteBuf, UnstableRecipe> streamCodec() {
-            return new StreamCodec<>() {
-                @Override
-                public void encode(@Nonnull RegistryFriendlyByteBuf o, @Nonnull UnstableRecipe unstableRecipe) {
-                }
-
-                @Nonnull
-                @Override
-                public UnstableRecipe decode(@Nonnull RegistryFriendlyByteBuf registryFriendlyByteBuf) {
-                    return new UnstableRecipe();
-                }
-            };
+            return StreamCodec.unit(getInstance());
         }
     }
 }

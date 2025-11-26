@@ -3,6 +3,7 @@ package com.landmaster.divisionsigil;
 import com.google.common.collect.ImmutableList;
 import com.landmaster.divisionsigil.block.CursedEarthBlock;
 import com.landmaster.divisionsigil.item.*;
+import com.landmaster.divisionsigil.recipe.EnchantmentRemovalRecipe;
 import com.landmaster.divisionsigil.recipe.UnstableRecipe;
 import com.landmaster.divisionsigil.stabilization_recipe.StabilizationRitualRecipe;
 import com.landmaster.divisionsigil.stabilization_recipe.StandardStabilizationRitualRecipe;
@@ -142,6 +143,7 @@ public class DivisionSigil {
     public static final Supplier<RecipeType<StabilizationRitualRecipe>> STABILIZATION_RITUAL_TYPE = RECIPE_TYPES.register("stabilization_ritual", RecipeType::simple);
 
     public static final Supplier<RecipeSerializer<UnstableRecipe>> UNSTABLE_RECIPE = RECIPE_SERIALIZERS.register("unstable_recipe", UnstableRecipe.Serializer::new);
+    public static final Supplier<RecipeSerializer<EnchantmentRemovalRecipe>> ENCHANTMENT_REMOVAL_RECIPE = RECIPE_SERIALIZERS.register("enchantment_removal", EnchantmentRemovalRecipe.Serializer::new);
     public static final Supplier<RecipeSerializer<StandardHoeTransmutation>> STANDARD_HOE_TRANSMUTATION
             = RECIPE_SERIALIZERS.register("standard_hoe_transmutation", StandardHoeTransmutation.Serializer::new);
     public static final Supplier<RecipeSerializer<CropRevertTransmutation>> CROP_REVERT

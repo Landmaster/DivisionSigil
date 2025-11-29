@@ -35,6 +35,7 @@
   "divisionsigil.configuration.endSiegeSpawnProbability": "End Siege spawn probability/tick",
   "divisionsigil.configuration.endSiegeSpawnDistance": "End Siege spawn radius",
   "divisionsigil.configuration.endSiegeKillCount": "End Siege required kill count",
+  "divisionsigil.configuration.cursedEarthMobLifespan": "Cursed Earth mob minimum tick lifespan",
 
   "message.divisionsigil.sigils_activated": "%d division sigil(s) activated",
   "message.divisionsigil.midnight_condition": "The Division Sigil ritual must be performed at midnight.",

@@ -73,5 +73,10 @@ public class Config {
             .comment("Number of mobs to kill for the End Siege")
             .defineInRange("endSiegeKillCount", 100, 0, 1000);
 
+    public static final ModConfigSpec.IntValue CURSED_EARTH_MOB_TICK_LIFESPAN = BUILDER
+            .comment("Minimum lifespan in ticks of mobs spawned by cursed earth")
+            .defineInRange("cursedEarthMobLifespan", 600, 0, Integer.MAX_VALUE);
+
+
     static final ModConfigSpec SPEC = BUILDER.build();
 }

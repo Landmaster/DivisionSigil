@@ -1,6 +1,7 @@
 package com.landmaster.divisionsigil.block;
 
 import com.landmaster.divisionsigil.Config;
+import com.landmaster.divisionsigil.DivisionSigil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -12,9 +13,14 @@ import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.MobDespawnEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 import javax.annotation.Nonnull;
 
+@EventBusSubscriber
 public class CursedEarthBlock extends Block {
     public CursedEarthBlock(Properties props) {
         super(props);
@@ -52,12 +58,19 @@ public class CursedEarthBlock extends Block {
                     && SpawnPlacements.checkSpawnRules(spawnerData.type, level, MobSpawnType.NATURAL, posAbove, level.random)
                     && level.noCollision(spawnerData.type.getSpawnAABB(posAbove.getX() + 0.5, posAbove.getY(), posAbove.getZ() + 0.5))) {
                         var monster = spawnerData.type.spawn(level, posAbove, MobSpawnType.NATURAL);
-                        if (monster instanceof Mob mob) {
-                            mob.setPersistenceRequired();
+                        if (monster != null) {
+                            monster.setData(DivisionSigil.CURSED_EARTH_SPAWNED, true);
                         }
                     }
                 });
             }
+        }
+    }
+
+    @SubscribeEvent
+    private static void onDespawnCheck(MobDespawnEvent event) {
+        if (event.getEntity().getData(DivisionSigil.CURSED_EARTH_SPAWNED) && event.getEntity().tickCount < Config.CURSED_EARTH_MOB_TICK_LIFESPAN.getAsInt()) {
+            event.setResult(MobDespawnEvent.Result.DENY);
         }
     }
 }

@@ -1,6 +1,7 @@
 {
   "entries": [
-    "divisionsigil:bastion_treasure"
+    "divisionsigil:bastion_treasure",
+    "divisionsigil:end_city_treasure"
   ],
   "replace": false
 }
